@@ -1,2 +1,3 @@
 python parser.py
-python pythonified.py
+python translated_files/pythonified.py
+# rm translated_files/pythonified.py

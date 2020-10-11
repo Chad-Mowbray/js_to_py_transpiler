@@ -1,6 +1,0 @@
-make a parser that converts javascript to python
-
-
-Rules:
-    -must use space
-    -functions etc must go on single line

@@ -1,9 +1,9 @@
-from classes import Tokenizer, Translator
+from classes.classes import Tokenizer, Translator
 
 contents = ''
 translated = []
 
-with open('js.js') as js_file:
+with open('origin_files/js.js') as js_file:
     contents = js_file.readlines()
 
 for line in contents:
@@ -11,6 +11,7 @@ for line in contents:
     translation = Translator(line_tokens)
     translated.append(translation.get_translation())
 
-with open('pythonified.py', 'w') as translation:
+with open('translated_files/pythonified.py', 'w') as translation:
     for line in translated:
+        line = line.replace("\t ", "\t") 
         translation.write(f"{line}\n")
