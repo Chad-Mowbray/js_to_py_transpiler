@@ -5,5 +5,5 @@ A toy to experiment with converting a JavaScript to a Python one.
 ```
 
 Rules for JavaScript origin:
-    -must use spaces
-    -functions, etc. must go on single line
+1. must use spaces
+2. functions, etc. must go on single line
