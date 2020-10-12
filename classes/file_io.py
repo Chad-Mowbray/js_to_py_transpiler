@@ -17,5 +17,4 @@ class FileIO:
         with open('translated_files/pythonified.py', 'w') as translation:
             for line in translated:
                 line = line.replace("\t ", "\t") 
-                print(line)
                 translation.write(f"{line}\n")

@@ -21,18 +21,30 @@ class Translator:
         self.translated = []
         print(self.token_list)
         
-    def process_token_list(self):
-        for token in self.token_list:
+    def process_token_list(self, recurse_list=None):
+        tokens = recurse_list if recurse_list else self.token_list
+
+        for token in tokens:
             if token.startswith(self.data.comment): break
+
             if token == self.data.function_keyword: self.process_function(self.token_list); break
+
+            is_for = re.search(self.data.for_operator, token)
+            if is_for: self.process_for(self.token_list); break
+
             is_method = re.search(self.data.method_indicator, token)
             if is_method: self.process_method(token); continue
+
             if token in self.data.variable_declarations: continue
+
             variable = re.search(self.data.variable, token) 
             if variable: self.translated.append(token); continue 
+
             if token in self.data.assignment: self.translated.append(token); continue
+
             is_integer = re.search(self.data.integer, token)
             if is_integer: self.translated.append(token); continue
+
             if token in self.data.math_operators: self.translated.append(token); continue
     
     def process_method(self, token):
@@ -53,6 +65,26 @@ class Translator:
     
     def process_function_call(self, token):
         self.translated.append(token)
+
+    def process_for(self, token_list):
+        var_name = token_list[1]
+        start = token_list[3][:-1]
+        stop = token_list[6][:-1]
+        step = token_list[7][:-1]
+
+        is_plusplus = re.search(self.data.plus_plus, step)
+        if is_plusplus: step = "1"
+        else: step = token_list[9][:-1]
+
+        for_init = f"for {var_name} in range({start},{stop},{step}):\n\t"
+        self.translated.append(for_init)
+
+        start =token_list.index("{")
+        self.process_for_body(token_list[start + 1:-1])
+    
+    def process_for_body(self, body_list):
+        self.process_token_list(body_list)
+
 
     def get_translation(self):
         self.process_token_list()

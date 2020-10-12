@@ -1,5 +1,5 @@
 from classes.classes import Tokenizer, Translator
-from file_io import FileIO
+from classes.file_io import FileIO
 
 def main():
     contents = FileIO().read_js_file()
