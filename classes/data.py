@@ -1,7 +1,7 @@
 import re
 
 class Data:
-    
+
     def __new__(cls, *args):
         if not hasattr(cls, 'instance'):
             cls.instance = super().__new__(cls)
@@ -21,5 +21,7 @@ class Data:
     math_operators = ["+", "-", "*", "/"]
     for_operator = r'^for'
     plus_plus = r'\+\+$'
+    list_bracket = r'^['
+    length = r'.length$'
 
 

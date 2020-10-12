@@ -13,7 +13,8 @@ class FileIO:
             contents = js_file.readlines()
         return contents
 
-    def write_py_file(self, translated):
+    @staticmethod
+    def write_py_file(translated):
         with open('translated_files/pythonified.py', 'w') as translation:
             for line in translated:
                 line = line.replace("\t ", "\t") 

@@ -7,3 +7,11 @@ console.log(y, "hi")
 
 for(let i = 0; i < x; i + 2) { console.log(i) }
 for(let i = 0; i < x; i++) { console.log(i) }
+
+let myArr = ["a", "b", "c"]
+console.log(myArr)
+
+for(let i = 0; i < x; i++) { console.log(myArr[i]) }
+
+for(let i = 0; i < myArr.length; i++) { console.log(myArr[i]) }
+

@@ -72,6 +72,9 @@ class Translator:
         stop = token_list[6][:-1]
         step = token_list[7][:-1]
 
+        is_len = re.search(self.data.length, stop)
+        if is_len: stop = self.process_len(stop)
+
         is_plusplus = re.search(self.data.plus_plus, step)
         if is_plusplus: step = "1"
         else: step = token_list[9][:-1]
@@ -84,6 +87,11 @@ class Translator:
     
     def process_for_body(self, body_list):
         self.process_token_list(body_list)
+    
+    def process_len(self, stop):
+        spl = stop.split(".")
+        return f"len({spl[0]})"
+
 
 
     def get_translation(self):

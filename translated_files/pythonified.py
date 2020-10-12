@@ -10,3 +10,13 @@ for i in range(0,x,2):
 	print(i)
 for i in range(0,x,1):
 	print(i)
+
+myArr = ["a", "b", "c"]
+print(myArr)
+
+for i in range(0,x,1):
+	print(myArr[i])
+
+for i in range(0,len(myArr),1):
+	print(myArr[i])
+
