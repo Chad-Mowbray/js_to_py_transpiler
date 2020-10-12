@@ -10,7 +10,7 @@ class Data:
     variable_declarations = ["var", "let", "const"]
     assignment = ["="]
     integer = r'[0-9]+'
-    variable = r'^[^0-9][a-zA-z0-9]*'
+    variable = r'^[^0-9{][a-zA-z0-9]*'
     built_ins = {
         "console.log": "print"
     }
@@ -23,5 +23,6 @@ class Data:
     plus_plus = r'\+\+$'
     list_bracket = r'^['
     length = r'.length$'
+    colon = ":"
 
 

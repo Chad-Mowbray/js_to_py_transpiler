@@ -19,7 +19,7 @@ class Translator:
         self.data = Data()
         self.token_list = [t.replace("\n", "") for t in token_list]
         self.translated = []
-        print(self.token_list)
+        # print(self.token_list)
         
     def process_token_list(self, recurse_list=None):
         tokens = recurse_list if recurse_list else self.token_list
@@ -46,6 +46,9 @@ class Translator:
             if is_integer: self.translated.append(token); continue
 
             if token in self.data.math_operators: self.translated.append(token); continue
+
+            if token == self.data.open_bracket: self.process_object(token, self.token_list); break
+           
     
     def process_method(self, token):
         if not re.search(r'[.]', token): self.process_function_call(token)
@@ -82,7 +85,7 @@ class Translator:
         for_init = f"for {var_name} in range({start},{stop},{step}):\n\t"
         self.translated.append(for_init)
 
-        start =token_list.index("{")
+        start = token_list.index(self.data.open_bracket)
         self.process_for_body(token_list[start + 1:-1])
     
     def process_for_body(self, body_list):
@@ -91,6 +94,17 @@ class Translator:
     def process_len(self, stop):
         spl = stop.split(".")
         return f"len({spl[0]})"
+    
+    def process_object(self, token, token_list):
+        extracted_obj = token_list[token_list.index(token) + 1: -1]
+        extracted_obj = [t.replace(",", '') for t in extracted_obj]
+        extracted_obj = [t.replace(":", "") for t in extracted_obj]
+
+        processed_obj = "{"
+        for i in range(0,len(extracted_obj) -1, 2):
+            processed_obj = f'{processed_obj} "{extracted_obj[i]}": {extracted_obj[i+1]},'
+
+        self.translated.append(processed_obj[:-1] + " }")
 
 
 

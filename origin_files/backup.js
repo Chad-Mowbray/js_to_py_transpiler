@@ -16,6 +16,3 @@ for(let i = 0; i < x; i++) { console.log(myArr[i]) }
 for(let i = 0; i < myArr.length; i++) { console.log(myArr[i]) }
 
 var myObj1 = { key1: "value1" }
-var myObj2 = { key1: "value1", key2: "value2" }
-console.log(myObj1, myObj2)
-
