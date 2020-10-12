@@ -23,6 +23,7 @@ class Translator:
         
     def process_token_list(self):
         for token in self.token_list:
+            if token.startswith(self.data.comment): break
             if token == self.data.function_keyword: self.process_function(self.token_list); break
             is_method = re.search(self.data.method_indicator, token)
             if is_method: self.process_method(token); continue
@@ -30,6 +31,9 @@ class Translator:
             variable = re.search(self.data.variable, token) 
             if variable: self.translated.append(token); continue 
             if token in self.data.assignment: self.translated.append(token); continue
+            is_integer = re.search(self.data.integer, token)
+            if is_integer: self.translated.append(token); continue
+            if token in self.data.math_operators: self.translated.append(token); continue
     
     def process_method(self, token):
         if not re.search(r'[.]', token): self.process_function_call(token)
