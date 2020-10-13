@@ -12,10 +12,12 @@ let myArr = ["a", "b", "c"]
 console.log(myArr)
 
 for(let i = 0; i < x; i++) { console.log(myArr[i]) }
-
 for(let i = 0; i < myArr.length; i++) { console.log(myArr[i]) }
 
 var myObj1 = { key1: "value1" }
 var myObj2 = { key1: "value1", key2: "value2" }
 console.log(myObj1, myObj2)
 
+let val1 = myObj1.key1
+// let val2 = myObj1["key1"]
+console.log(val1)

@@ -16,7 +16,6 @@ print(myArr)
 
 for i in range(0,x,1):
 	print(myArr[i])
-
 for i in range(0,len(myArr),1):
 	print(myArr[i])
 
@@ -24,3 +23,6 @@ myObj1 = { "key1": "value1" }
 myObj2 = { "key1": "value1", "key2": "value2" }
 print(myObj1, myObj2)
 
+val1 = myObj1["key1"]
+
+print(val1)

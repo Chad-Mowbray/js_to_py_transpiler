@@ -36,9 +36,15 @@ class Translator:
             if is_method: self.process_method(token); continue
 
             if token in self.data.variable_declarations: continue
+            print(token)
+
+            is_obj_property = re.search(self.data.object_property, token)
+            if is_obj_property: self.process_object_property(token); continue
+            print(token)
 
             variable = re.search(self.data.variable, token) 
             if variable: self.translated.append(token); continue 
+            
 
             if token in self.data.assignment: self.translated.append(token); continue
 
@@ -105,6 +111,11 @@ class Translator:
             processed_obj = f'{processed_obj} "{extracted_obj[i]}": {extracted_obj[i+1]},'
 
         self.translated.append(processed_obj[:-1] + " }")
+
+    def process_object_property(self, token):
+        obj, key = token.split(".")
+        print(obj, key)
+        self.translated.append(f'{obj}["{key}"]')
 
 
 

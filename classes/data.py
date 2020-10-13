@@ -14,7 +14,7 @@ class Data:
     built_ins = {
         "console.log": "print"
     }
-    method_indicator = r'[.()]'
+    method_indicator = r'[.](?=.+\()' 
     function_keyword = "function"
     open_bracket = "{"
     comment = "//"
@@ -24,5 +24,5 @@ class Data:
     list_bracket = r'^['
     length = r'.length$'
     colon = ":"
-
+    object_property = f'{variable}[.][a-zA-z0-9]+$'
 
