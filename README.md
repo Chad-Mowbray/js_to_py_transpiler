@@ -15,3 +15,5 @@ Can handle (so far):
 2. basic math operators
 3. basic functions
 4. basic for loops
+5. object creation
+6. object property access
